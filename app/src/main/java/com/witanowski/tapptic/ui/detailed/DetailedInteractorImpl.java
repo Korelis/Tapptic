@@ -1,5 +1,6 @@
 package com.witanowski.tapptic.ui.detailed;
 
+import com.witanowski.tapptic.BuildConfig;
 import com.witanowski.tapptic.data.model.Number;
 import com.witanowski.tapptic.data.remote.APIUtils;
 
@@ -22,14 +23,12 @@ public class DetailedInteractorImpl implements DetailedInteractor {
 
     private Number number;
 
-    private static final String API_URL = "http://dev.tapptic.com/test/json.php?name=";
-
     @Override
     public void getNumber(final DetailedInteractor.OnGetNumbersFinishedListener listener
             , String param) {
         OkHttpClient client = new OkHttpClient();
 
-        Request request = APIUtils.getRequest(API_URL + param);
+        Request request = APIUtils.getRequest(BuildConfig.URL_DETAILED + param);
 
         client.newCall(request).enqueue(new Callback() {
             @Override
